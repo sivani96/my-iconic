@@ -1,0 +1,9 @@
+p>*{
+  margin-right: 10px;
+}
+i{
+	cursor:pointer;
+}
+i:hover{
+	transform:rotate(90deg);
+}

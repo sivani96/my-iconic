@@ -21,10 +21,12 @@ class IconApp extends Component{
     super();
     this.state={r:[],g:[],b:[]};
   }
-
+  
+  
   componentWillReceiveProps(nextProps){
       console.log(nextProps);
       const nextWordCount=nextProps.text.split(' ').length;
+      
 	  const rv=[...this.state.r];
 	  const gv=[...this.state.g];
 	  const bv=[...this.state.b];
@@ -48,6 +50,9 @@ class IconApp extends Component{
 	
     words=words.map(function(w,i){
 
+    //  this.setState({colorval:colorval.push(colors[index])});
+
+
       w=w.replace(/\W/g,'').toLowerCase();
       //   .replace(/s$/,'')
 
@@ -57,11 +62,26 @@ class IconApp extends Component{
       const sty={
         color: colorValue
       };
-
+	  let wtemp=w;
+	  let count=0;
+	   	while(wtemp.endsWith('s')){
+		if(wordMap[wtemp]){
+			return (<i style={sty} key={i} className={'fa '+wordMap[wtemp]}/>);
+		}
+		else{
+			wtemp=wtemp.replace(/s$/,'');
+			count++;
+		}
+	  } 
+	  w=wtemp;
       if(wordMap[w]){
         return (<i style={sty} key={i} className={'fa '+wordMap[w]}/>);
 	  }
+	  
       else {
+		  while(count--){
+		  w=w+'s';
+		}
         return (<span key={i}>{w}</span>);
       }
     });

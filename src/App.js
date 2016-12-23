@@ -38,7 +38,7 @@ class App extends Component {
         ref={el=> el && el.focus()}/>
 	  <p>{this.state.text}</p>
       <IconApp text={this.state.text} number="10"/>
-      <IconApp text={this.state.text} number="10"/>
+	  <IconApp text={this.state.text} number="10"/>
       </div>
     );
   }
