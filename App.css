@@ -1,0 +1,14 @@
+.App {
+  padding: 10px;
+  color: #aba;
+  border: 3px;
+  font-size: 5rem;
+  background-color: lightblue;
+}
+
+p{
+  font-size: 2rem;
+  font-style: italic;
+  font-family: sans-serif;
+  color: purple;
+}
