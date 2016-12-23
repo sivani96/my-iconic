@@ -8,20 +8,6 @@ console.log(icons);
 const wordMap =icons.reduce(function(chain,i){
   const parts=i.split('-');
   var key=parts[1];
-  /*if(chain[key]!=undefined)
-  {
-    key=parts[1]+parts[2];
-  }*/
-/*  need to fix:
-if(chain[key]!=undefined)
-  {
-    key=parts.reduce(function(chain,p){
-      if(p!=parts[0]){
-        return chain+p;
-      }
-    },{});
-    console.log(key);
-  }*/
   chain[key]=i;
   return chain;
 },{});
@@ -39,14 +25,6 @@ class IconApp extends Component{
   componentWillReceiveProps(nextProps){
       console.log(nextProps);
       const nextWordCount=nextProps.text.split(' ').length;
-      //console.log(num);
-      // const colorstemp = this.state.colorval;
-      // while (colorstemp.length<nextWordCount){
-      //   let index=Math.ceil(Math.random()*3);
-      //   colorstemp.push(colors[index]);
-      // }
-      // this.setState({colorval:colorstemp});
-     /* const nextColors=[...this.state.colorIndices];*/
 	  const rv=[...this.state.r];
 	  const gv=[...this.state.g];
 	  const bv=[...this.state.b];
@@ -69,9 +47,6 @@ class IconApp extends Component{
 	const bs=(this.state.b).toString();
 	
     words=words.map(function(w,i){
-
-    //  this.setState({colorval:colorval.push(colors[index])});
-
 
       w=w.replace(/\W/g,'').toLowerCase();
       //   .replace(/s$/,'')
