@@ -19,9 +19,16 @@ console.log(wordMap);
 class IconApp extends Component{
   constructor(){
     super();
-    this.state={r:[],g:[],b:[]};
+    this.state={r:[],g:[],b:[],text:[]};
+	this.iconClicked=this.iconClicked.bind(this);
   }
   
+  
+  iconClicked(w,i){
+	const dispText=[...this.state.text];
+	dispText[i]=w;
+	this.setState({text:dispText});
+  }
   
   componentWillReceiveProps(nextProps){
       console.log(nextProps);
@@ -65,26 +72,34 @@ class IconApp extends Component{
 	  let wtemp=w;
 	  let count=0;
 	   	while(wtemp.endsWith('s')){
-		if(wordMap[wtemp]){
-			return (<i style={sty} key={i} className={'fa '+wordMap[wtemp]}/>);
+		if(wordMap[wtemp]&&this.state.text[i]==undefined){
+				return (<i style={sty} onClick={() => this.iconClicked(w,i)} key={i} className={'fa '+wordMap[wtemp]}/>);
+			
 		}
+		else if(wordMap[wtemp]){
+				return (<span key={i}>{wtemp}</span>);
+				this.setState({text:undefined});
+			}
 		else{
 			wtemp=wtemp.replace(/s$/,'');
 			count++;
 		}
 	  } 
 	  w=wtemp;
-      if(wordMap[w]){
-        return (<i style={sty} key={i} className={'fa '+wordMap[w]}/>);
+      if(wordMap[w]&&this.state.text[i]==undefined){
+			return (<i style={sty} onClick={() => this.iconClicked(w,i)} key={i} className={'fa '+wordMap[w]}/>);
 	  }
-	  
+	  else if(wordMap[w]){
+			return (<span key={i}>{w}</span>);
+			this.setState({text:undefined});
+	    }
       else {
 		  while(count--){
 		  w=w+'s';
 		}
         return (<span key={i}>{w}</span>);
       }
-    });
+    },this);
     return(
       <p>
       {words}</p>
